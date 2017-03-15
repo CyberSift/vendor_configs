@@ -1,0 +1,65 @@
+<!--
+	sysmon-config | A sysmon configuration for everyone
+	Public Version: 30
+	Based on Work By @SwiftOnSecurity
+  	
+	Required Sysmon version: 5.02
+	https://technet.microsoft.com/en-us/sysinternals/bb545021.aspx
+-->
+
+<Sysmon schemaversion="3.20">
+	<HashAlgorithms>md5,IMPHASH</HashAlgorithms>
+	<EventFiltering>
+
+	<!--SYSMON EVENT ID 1 : PROCESS CREATION -->
+		<ProcessCreate onmatch="include">
+		</ProcessCreate>
+
+	<!--SYSMON EVENT ID 2 : FILE CREATION TIME RETROACTIVELY CHANGED IN THE FILESYSTEM -->
+		<FileCreateTime onmatch="include">
+		</FileCreateTime>
+
+	<!--SYSMON EVENT ID 3 : NETWORK CONNECTION INITIATED -->
+		<NetworkConnect default="include">
+		</NetworkConnect>
+
+	<!--SYSMON EVENT ID 4 : RESERVED FOR SYSMON STATUS MESSAGES, THIS LINE IS INCLUDED FOR DOCUMENTATION PURPOSES ONLY -->
+
+	<!--SYSMON EVENT ID 5 : PROCESS ENDED -->
+		<ProcessTerminate onmatch="include">
+		</ProcessTerminate>
+
+	<!--SYSMON EVENT ID 6 : DRIVER LOADED INTO KERNEL -->
+		<DriverLoad onmatch="include">
+		</DriverLoad>
+
+	<!--SYSMON EVENT ID 7 : DLL LOADED BY PROCESS -->
+		<ImageLoad onmatch="include">
+		</ImageLoad>
+
+	<!--SYSMON EVENT ID 8 : REMOTE THREAD CREATED -->
+		<CreateRemoteThread onmatch="exclude">
+		</CreateRemoteThread>
+
+	<!--SYSMON EVENT ID 9 : RAW DISK ACCESS -->
+		<RawAccessRead onmatch="include">
+		</RawAccessRead>
+
+	<!--SYSMON EVENT ID 10 : INTER-PROCESS ACCESS -->
+		<ProcessAccess onmatch="include">
+		</ProcessAccess>
+
+	<!--SYSMON EVENT ID 11 : FILE CREATED -->
+		<FileCreate onmatch="include">
+		</FileCreate>
+
+	<!--SYSMON EVENT ID 12 & 13 & 14 : REGISTRY MODIFICATION -->
+		<RegistryEvent onmatch="include">
+		</RegistryEvent>
+
+	<!--SYSMON EVENT ID 15 : ALTERNATE DATA STREAM CREATED -->
+		<FileCreateStreamHash onmatch="include">
+		</FileCreateStreamHash>
+
+	</EventFiltering>
+</Sysmon>
