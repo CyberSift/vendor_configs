@@ -1,0 +1,18 @@
+packetbeat.flows:
+  timeout: 60s
+  period: -1s
+
+packetbeat.protocols.icmp:
+  enabled: false
+
+processors:
+ - drop_event:
+     when:
+        contains:
+           source.ip: "127"
+ - drop_event:
+     when:
+        contains:
+           dest.ip: "127"
+
+tags: ["windows"]
