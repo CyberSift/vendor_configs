@@ -1,0 +1,20 @@
+
+packetbeat.protocols.icmp:
+  enabled: false
+
+packetbeat.protocols.dns:
+  ports: [53]
+  include_authorities: true
+  include_additionals: true
+
+processors:
+ - drop_event:
+     when:
+        contains:
+           source.ip: "127"
+ - drop_event:
+     when:
+        contains:
+           dest.ip: "127"
+
+tags: ["windows"]
